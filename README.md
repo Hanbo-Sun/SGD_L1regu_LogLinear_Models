@@ -1,8 +1,7 @@
 # SGD-for-L1-regularized-Log-linear-Models
 Stochastic Gradient Descent for L1-regularized Log-linear Models
 
-User Manual
-
+# general
 Compile by running ’make’. Uses -std=c++11 - on older compilers you may need to change this to -std=c++0x in the Makefile.
 
 Run all tests with ’make test’.
@@ -15,7 +14,22 @@ Training and test data should be in svm-light/libsvm format, e.g.
 
 +1 as the target value marks a positive example, -1 a negative example respectively. Feature number 1 has the value 4.12069, feature number 6 has the value 11.3896, feature number 18 has the value 18.5742, feature 332 has 2.85764 and feature 5284 has the value 53.4406 and all the other features have value 0.
 
-Options:
+# Steps
+
+Step1: make -f Makefile
+
+Step2: ./doraemon
+
+Step3: choose your options, for example:
+
+-o weights.out -p predict.out -lr 0.85 -i 3000 -e 0.0001 -t test.dat -tr train.dat
+if you further want to use normal format datasets, you can add ’-sp 0’ in the options.
+
+-o weights.out -p predict.out -lr 1 -i 3000 -e 0.0001 -tr [YourTrain.txt] -t [YourTest.txt] -sp 0
+In order to adapt to different type of matrix (Sparse / Dense), we also provide an option -sp <bool>for switching on dense matrix transformation to sparse matrix form. In the following test- ing sample, 2 sparse samples and 1 dense sample would be presented.
+
+
+# Options
 
 -s <int> Shuffle dataset after each iteration. Default value 1, which is recommended to improve prediction accuracy, and the other possible value 0 indicates no Shuffle.
 
@@ -47,17 +61,3 @@ Options:
 
 Note that, we have two options to generate the learning rate.
 
-
-Overall:
-
-Step1: make -f Makefile
-
-Step2: ./doraemon
-
-Step3: choose your options, for example:
-
--o weights.out -p predict.out -lr 0.85 -i 3000 -e 0.0001 -t test.dat -tr train.dat
-if you further want to use normal format datasets, you can add ’-sp 0’ in the options.
-
--o weights.out -p predict.out -lr 1 -i 3000 -e 0.0001 -tr [YourTrain.txt] -t [YourTest.txt] -sp 0
-In order to adapt to different type of matrix (Sparse / Dense), we also provide an option -sp <bool>for switching on dense matrix transformation to sparse matrix form. In the following test- ing sample, 2 sparse samples and 1 dense sample would be presented.
